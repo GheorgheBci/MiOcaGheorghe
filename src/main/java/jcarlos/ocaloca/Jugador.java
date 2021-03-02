@@ -1,4 +1,4 @@
-package jcarlos.ocaloca;
+  package jcarlos.ocaloca;
 
 import java.util.Objects;
 import java.util.Random;
@@ -23,19 +23,19 @@ public class Jugador {
     public void tirarDado() {
         this.tirada = r.nextInt(6) + 1;
     }
-    
+
     // Mira la tirada y mueve a la nueva casilla. Controla el rebote   
-    public void mover(int movimiento){
-        this.casillaActual+=movimiento;
+    public void mover(int movimiento) {
+        this.casillaActual += movimiento;
         // Hay que controlar que no se salga del tablero
-        if (this.casillaActual>=Tablero.TOTAL_CASILLAS){
+        if (this.casillaActual >= Tablero.TOTAL_CASILLAS) {
             // Rebote
             int rebote = this.casillaActual - (Tablero.TOTAL_CASILLAS - 1);
-            this.casillaActual =  Tablero.TOTAL_CASILLAS - 1 - rebote;
+            this.casillaActual = Tablero.TOTAL_CASILLAS - 1 - rebote;
         }
     }
-    
-    public boolean ganaPartida(){
+
+    public boolean ganaPartida() {
         return this.casillaActual == Tablero.TOTAL_CASILLAS - 1;
     }
 
