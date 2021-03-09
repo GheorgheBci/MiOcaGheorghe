@@ -1,6 +1,5 @@
 package jcarlos.ocaloca;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Juego {
@@ -52,16 +51,19 @@ public class Juego {
 
                     aux.setTurnosSinJugar(aux.getTurnosSinJugar() - 1);
 
+                    // Si el jugador ha caido en la casilla 31 (casilla pozo) tendrá que sacar un 6 en el dado para poder salir del pozo
                     if (aux.getCasillaActual() == 31) {
                         aux.tirarDado();
 
                         Vista.informarTirada(aux);
 
+                        // Si consigue sacar un 6 muestra un mensaje de que el jugador ha salido del pozo
                         if (aux.getTirada() == 6) {
                             System.out.println("El jugador " + aux.getNombre() + " ha salido del pozo");
 
-                            aux.setTurnosSinJugar(0);
+                            aux.setTurnosSinJugar(0); // Los turnos se ponen a 0 para que pueda tirar en la siguiente ronda
 
+                            // Quitamos al jugador de la casilla pozo y se moverá dependiendo de lo que saque en la tirada
                             tablero.getCasilla(aux.getCasillaActual()).quitarJugador(aux);
 
                             aux.mover(aux.getTirada());
@@ -72,6 +74,7 @@ public class Juego {
                             Vista.mostrarTablero(tablero);
 
                         } else {
+                            // Si el jugador no ha sacado un 6 se mostrará este mensaje
                             System.out.println("El jugador " + aux.getNombre() + " no ha salido del pozo");
                         }
                     }
